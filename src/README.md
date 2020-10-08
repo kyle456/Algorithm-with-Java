@@ -1,8 +1,8 @@
 ﻿# 알고리즘 문제 풀이
 
 * Baekjoon  
- - 그리디(Greedy)  
- - 구현(Implementation)  
+ 1) 그리디(Greedy)  
+ 2) 구현(Implementation)  
 
 * CodeUp  
- - 기초 100제(Basic 100)  
+ 1) 기초 100제(Basic 100)  

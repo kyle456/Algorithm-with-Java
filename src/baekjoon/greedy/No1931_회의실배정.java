@@ -10,7 +10,7 @@ public class No1931_회의실배정 {
 		Scanner scanner = new Scanner(System.in);
 
 		int n = scanner.nextInt(); // 회의 개수
-		long[][] timeTable = new long[n][2]; // 회의의 시작 시간과 끝 시간
+		int[][] timeTable = new int[n][2]; // 회의의 시작 시간과 끝 시간
 		int maxCount = 0; // 사용하는 회의의 개수
 
 		for (int i = 0; i < n; ++i) {
@@ -18,6 +18,15 @@ public class No1931_회의실배정 {
 			timeTable[i][1] = scanner.nextInt(); // 끝
 		}
 		
+		Arrays.sort(timeTable, new Comparator<int[]>() {
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				if (o1[1] == o2[1])
+					return o1[0] - o2[0];
+				else
+					return o1[1] - o2[1];
+			}
+		});
 
 		int thisIndex = 0;
 		int nextIndex = 1;
@@ -37,6 +46,7 @@ public class No1931_회의실배정 {
 
 		if (count > maxCount)
 			maxCount = count;
+		
 
 		System.out.println(maxCount);
 

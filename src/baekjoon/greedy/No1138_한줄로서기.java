@@ -15,7 +15,6 @@ public class No1138_한줄로서기 {
 		// 초기 값 생성
 		for (int i = 0; i < n; ++i) {
 			leftPeople[i] = scanner.nextInt();
-			line.add(null);
 		}
 
 		// leftPeople의 값이 곧 line의 인덱스, line의 값은 leftPeople의 인덱스 + 1

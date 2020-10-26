@@ -40,10 +40,10 @@ public class No4_게임개발 {
 			int lookLeftM = location[1] + LEFTM[nowDirection];
 			countLook++;
 			
-			if(map[lookLeftN][lookLeftM] == 0) {
-				// 안 가본 곳
-				nowDirection = changeDirection(nowDirection); // 회전
-				
+			nowDirection = changeDirection(nowDirection); // 회전
+			
+			// 안 가본 곳
+			if(map[lookLeftN][lookLeftM] == 0) {							
 				// 전진
 				location[0] = lookLeftN;
 				location[1] = lookLeftM;
@@ -51,20 +51,22 @@ public class No4_게임개발 {
 				map[location[0]][location[1]] = 2; // 가본 곳은 2로 표시		
 				countLook = 0;
 				visit++;
-			} else {
-				// 가봤거나 바다인 곳
-				nowDirection = changeDirection(nowDirection); // 회전			
+			} 
+			// 가봤거나 바다인 곳
+			else {	
+				// 다 가봤거나 다 바다라서 갈 곳이 없음
 				if (countLook == 4) {
-					// 다 가봤거나 다 바다라서 갈 곳이 없음
 					int lookBackN = location[0] + BACKN[nowDirection];
 					int lookBackM = location[1] + BACKM[nowDirection];
+					
+					// 뒤가 바다가 아니라 그냥 가본 곳이다, 그럼 뒤로 이동
 					if (map[lookBackN][lookBackM] == 2) {
-						// 뒤가 바다가 아니라 그냥 가본 곳이다, 그럼 뒤로 이동
 						location[0] = lookBackN;
 						location[1] = lookBackM;
 						countLook = 0;
-					} else {
-						// 뒤가 바다다, 그럼 종료
+					} 
+					// 뒤가 바다다, 그럼 종료
+					else {
 						break;
 					}	
 				}
@@ -78,12 +80,9 @@ public class No4_게임개발 {
 	
 	// 왼쪽으로 방향 회전하는 함수
 	public static int changeDirection(int nowDirection) {
-		switch (nowDirection) {
-		case 0 : nowDirection = 3; break; // 북 -> 서
-		case 1 : nowDirection = 0; break; // 동 -> 북
-		case 2 : nowDirection = 1; break; // 남 -> 동
-		case 3 : nowDirection = 2; break; // 서 -> 남
-		}
+		nowDirection--;
+		if (nowDirection < 0)
+			nowDirection = 3;
 		
 		return nowDirection;
 	}

@@ -24,7 +24,8 @@ public class No5_문자열재정렬 {
 			}
 		}
 		
-		System.out.println(sum);
+		if (sum != 0)
+			System.out.println(sum);
 	}
 
 }

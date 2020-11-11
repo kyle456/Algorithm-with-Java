@@ -14,18 +14,20 @@ class Point {
 		this.y = y;
 	}
 
-	int getX() {
-		return x;
+	public int getX() {
+		return this.x;
 	}
 
-	int getY() {
-		return y;
+	public int getY() {
+		return this.y;
 	}
 }
 
 public class No2667_단지번호붙이기 {
 	static int n, group, house; // 지도의 크기, 단지수, 집의 수
 	static int[][] map; // 지도
+	static int[] dx = { -1, 1, 0, 0 };
+	static int[] dy = { 0, 0, -1, 1 };
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -44,16 +46,17 @@ public class No2667_단지번호붙이기 {
 			}
 		}
 
-//		// dfs로 탐색
-//		for (int i = 0; i < n; i++) {
-//			for (int j = 0; j < n; j++) {
-//				if (dfs(i, j)) {
-//					group++;
-//					eachHouses.add(house);
-//					house = 0;
-//				}
-//			}
-//		}
+		// dfs로 탐색
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (dfs(i, j)) {
+
+					group++;
+					eachHouses.add(house);
+					house = 0;
+				}
+			}
+		}
 
 		// bfs로 탐색
 		for (int i = 0; i < n; i++) {
@@ -92,31 +95,30 @@ public class No2667_단지번호붙이기 {
 	}
 
 	public static boolean bfs(int x, int y) {
-		int[] dx = { -1, 1, 0, 0 };
-		int[] dy = { 0, 0, -1, 1 };
-
 		if (x < 0 || x >= n || y < 0 || y >= n || map[x][y] == 0) {
 			// 지도의 범위를 벗어나거나, 이미 방문 했다면
 			return false;
-		}
+		} else {
+			Queue<Point> queue = new LinkedList<>();
+			queue.offer(new Point(x, y));
+			map[x][y] = 0; // 방문처리
+			house++;
 
-		Queue<Point> queue = new LinkedList<>();
-		queue.offer(new Point(x, y));
+			while (!queue.isEmpty()) {
+				// 상하좌우 이동
+				for (int i = 0; i < 4; i++) {
+					int newX = queue.peek().getX() + dx[i];
+					int newY = queue.peek().getY() + dy[i];
 
-		while (!queue.isEmpty()) {
-			for (int i = 0; i < 4; i++) {
-				int newX = queue.peek().getX() + dx[i];
-				int newY = queue.peek().getY() + dy[i];
-
-				if (newX >= 0 && newX < n && newY >= 0 && newY < n && map[newX][newY] == 1) {
-					queue.offer(new Point(newX, newY));
+					if (newX >= 0 && newX < n && newY >= 0 && newY < n && map[newX][newY] == 1) {
+						queue.offer(new Point(newX, newY)); //큐에 삽입
+						map[newX][newY] = 0; // 방문처리
+						house++;
+					}
 				}
-
 				queue.poll();
 			}
+			return true;
 		}
-
-		return true;
 	}
-
 }

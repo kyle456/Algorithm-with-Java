@@ -1,10 +1,14 @@
 package baekjoon.dfsbfs;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
+
 
 class Wall {
 	private int x, y;
@@ -30,29 +34,34 @@ public class No2206_벽부수고이동하기 {
 	static int[] dx = { -1, 1, 0, 0 };
 	static int[] dy = { 0, 0, -1, 1 };
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		n = sc.nextInt(); // 세로
-		m = sc.nextInt(); // 가로
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken()); // 세로
+		m = Integer.parseInt(st.nextToken()); // 가로
 		map = new int[n][m];
 		visited = new int[n][m];
 		ArrayList<Integer> results = new ArrayList<Integer>();
-		sc.nextLine(); // 버퍼 제거
 
 		// 지도 기록
 		for (int i = 0; i < n; i++) {
-			String oneLine = sc.nextLine();
+			String oneLine = br.readLine();
 			for (int j = 0; j < m; j++) {
 				map[i][j] = oneLine.charAt(j) - '0';
 			}
 		}
 		
+		br.close();
+		results.add(bfs(0, 0)); // 벽을 부수지 않았을 때 bfs
+		
+		// 벽을 1개 부쉈을 때 bfs
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (map[i][j] == 1) {
-					map[i][j] = 0;
+					visited = new int[n][m]; // visited 초기화
+					map[i][j] = 0; // 벽 1개 부수기
 					results.add(bfs(0, 0));
-					map[i][j] = 1;
+					map[i][j] = 1; // 벽 원래대로 복구
 				}
 			}
 		}
@@ -60,17 +69,17 @@ public class No2206_벽부수고이동하기 {
 		Collections.sort(results);
 		
 		if (results.get(results.size() - 1) == 0) {
-			// 불가능 할 때 예외처리
+			// 불가능 할 때 예외처리(최장 경로가 0인 경우)
 			System.out.println(-1);
 		} else {
-			System.out.println(results.get(0));
+			// 가능할 때는 0을 제외한 최단 경로 출력
+			for (int i : results) {
+				if (i != 0) {
+					System.out.println(i);
+					break;
+				}
+			}
 		}
-		
-		/*
-		 * 1. visited가 한번 사용하고 초기화가 안됨
-		 * 2. 벽을 안부수고도 bfs를 해야하고, 벽을 부쉈을 때와 비교도 해야함
-		 * 3. 불가능하지 않은데도 results.get(0)이 0인경우가 있음 이것을 해결
-		 * */
 	}
 
 	public static int bfs(int x, int y) {

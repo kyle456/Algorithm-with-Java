@@ -19,10 +19,39 @@ public class No1744_수묶기 {
 		br.close();
 		Arrays.sort(numArr);
 		
-		// 정렬 후 0이나 음수가 나오는 구간을 기록
-		// 그 구간을 중심으로 왼쪽(음수), 오른쪽(양수)로 나누어서 끝에서부터 2개씩 묶으면 됨
-		// 묶는 개수는 음수 or 양수의 개수를 2로 나눈 몫 만큼임
-		// 묶지 못한 나머지 수들은 그냥 더함
+		int medium = -1;
+		int index = n - 1;
+		int sum = 0;
+		
+		for (int i = 0; i < n; i++) {
+			if (numArr[i] <= 0) {
+				medium = i;
+			}
+		}
+		
+		// 양수 부분 묶기
+		while (index > medium) {
+			if (index - 1 > medium)
+				sum += numArr[index] * numArr[index - 1];
+			else
+				sum += numArr[index];
+			
+			index -= 2;
+		}
+		
+		index = 0;
+		
+		// 음수 부분 묶기
+		while (index <= medium) {
+			if (index < medium)
+				sum += numArr[index] * numArr[index + 1];
+			else
+				sum += numArr[index];
+			
+			index += 2;
+		}
+		
+		System.out.println(sum);
 	}
 
 }

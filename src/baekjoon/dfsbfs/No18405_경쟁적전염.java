@@ -65,7 +65,7 @@ public class No18405_경쟁적전염 {
 			int second = virus.second;
 			
 			if (second == s) {
-				return testTube[x][y]; // s초에 도달하면 return
+				break; // s초에 도달하면 break
 			}
 			
 			for (int i = 0; i < 4; i++) {

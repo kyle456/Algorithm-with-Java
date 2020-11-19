@@ -8,7 +8,7 @@ public class No4_게임개발 {
 	private static final int[] LEFTM = { -1, 0, 1, 0 };
 	
 	// 방향이 배열의 index로 들어가서(북, 동, 남, 서), 각 방향에 따라 뒤로 이동할 때의 N과 M의 변화
-	private static final int[] BACKN = { -1, 0, 1, 0 };
+	private static final int[] BACKN = { 1, 0, -1, 0 };
 	private static final int[] BACKM = { 0, -1, 0, 1 };
 
 	public static void main(String[] args) {

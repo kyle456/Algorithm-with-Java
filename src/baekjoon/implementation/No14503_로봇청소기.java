@@ -17,11 +17,11 @@ public class No14503_로봇청소기 {
 		int n = scanner.nextInt(); // 세로 크기
 		int m = scanner.nextInt(); // 가로 크기
 		
-		int[] location = new int[2]; // 캐릭터의 현재 위치
+		int[] location = new int[2]; // 청소기의 현재 위치
 		location[0] = scanner.nextInt(); // 북쪽으로 부터 몇 칸
 		location[1] = scanner.nextInt(); // 서쪽으로 부터 몇 칸
 		
-		int nowDirection = scanner.nextInt(); // 캐릭터의 현재 방향
+		int nowDirection = scanner.nextInt(); // 청소기의 현재 방향
 
 		int[][] map = new int[n][m]; // N x M 맵
 
@@ -52,20 +52,20 @@ public class No14503_로봇청소기 {
 				countLook = 0;
 				visit++;
 			} 
-			// 가봤거나 바다인 곳
+			// 가봤거나 벽인 곳
 			else {	
-				// 다 가봤거나 다 바다라서 갈 곳이 없음
+				// 다 가봤거나 다 벽이라서 갈 곳이 없음
 				if (countLook == 4) {
 					int lookBackN = location[0] + BACKN[nowDirection];
 					int lookBackM = location[1] + BACKM[nowDirection];
 					
-					// 뒤가 바다가 아니라 그냥 가본 곳이다, 그럼 뒤로 이동
+					// 뒤가 벽이 아니라 그냥 가본 곳이다, 그럼 뒤로 이동
 					if (map[lookBackN][lookBackM] == 2) {
 						location[0] = lookBackN;
 						location[1] = lookBackM;
 						countLook = 0;
 					} 
-					// 뒤가 바다다, 그럼 종료
+					// 뒤가 벽이다, 그럼 종료
 					else {
 						break;
 					}	

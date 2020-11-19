@@ -39,7 +39,10 @@ public class No18405_경쟁적전염 {
 		x = Integer.parseInt(st.nextToken()) - 1; // x와
 		y = Integer.parseInt(st.nextToken()) - 1; // y 좌표에 존재하는 바이러스 찾기
 		
-		System.out.println(bfs(testTube));
+		br.close();
+		bw.write(String.valueOf(bfs(testTube)));
+		bw.flush();
+		bw.close();
 
 	}
 

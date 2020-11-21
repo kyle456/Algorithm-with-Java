@@ -1,3 +1,5 @@
+package hufs;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +15,7 @@ class Point {
 	}
 }
 
-public class Main {
+public class No10_길찾기 {
 	static int n;
 	static int[][] map;
 	static int[] dx = { 0, 1, 0, 2 };

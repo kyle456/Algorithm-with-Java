@@ -1,3 +1,5 @@
+package hufs;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,7 +29,7 @@ class Wall {
 	}
 }
 
-public class Main {
+public class No9_벽부시고이동하기 {
 	static int n, m;
 	static int[][] map;
 	static int[][][] visited;
@@ -102,4 +104,5 @@ public class Main {
 	}
 
 }
+
 

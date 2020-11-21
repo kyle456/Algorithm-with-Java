@@ -1,3 +1,5 @@
+package hufs;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,16 +8,16 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class Point {
+class Board {
 	int x, y;
 
-	Point(int x, int y) {
+	Board(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 }
 
-public class Main {
+public class No6_보드이동 {
 	static int r, c;
 	static char[][] map;
 	static int[][] visited;
@@ -51,25 +53,26 @@ public class Main {
 	}
 
 	public static void bfs(int x, int y) {
-		Queue<Point> queue = new LinkedList<Point>();
-		queue.offer(new Point(x, y));
+		Queue<Board> queue = new LinkedList<Board>();
+		queue.offer(new Board(x, y));
 		visited[x][y] = 1;
 		arr.add(map[x][y]);
 
 		while (!queue.isEmpty()) {
-			Point point = queue.poll();
+			Board board = queue.poll();
 			for (int i = 0; i < 4; i++) {
-				int newX = point.x + dx[i];
-				int newY = point.y + dy[i];
+				int newX = board.x + dx[i];
+				int newY = board.y + dy[i];
 
 				if (newX >= 0 && newY >= 0 && newX < r && newY < c && visited[newX][newY] == 0
 						&& arr.indexOf(map[newX][newY]) == -1) {
-					queue.offer(new Point(newX, newY));
+					queue.offer(new Board(newX, newY));
 					arr.add(map[newX][newY]);
-					visited[newX][newY] = visited[point.x][point.y] + 1;
+					visited[newX][newY] = visited[board.x][board.y] + 1;
 				}
 			}
 		}
 	}
 
 }
+

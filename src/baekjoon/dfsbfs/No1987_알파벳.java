@@ -1,11 +1,11 @@
-package hufs;
+package baekjoon.dfsbfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class No6_보드이동 {
+public class No1987_알파벳 {
 	static int r, c;
 	static int[] dx = { -1, 1, 0, 0 };
 	static int[] dy = { 0, 0, -1, 1 };

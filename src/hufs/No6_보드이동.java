@@ -49,6 +49,7 @@ public class No6_보드이동 {
 				max = Math.max(visited[i][j], max);
 			}
 		}
+		
 		System.out.print(max);
 	}
 
@@ -64,8 +65,7 @@ public class No6_보드이동 {
 				int newX = board.x + dx[i];
 				int newY = board.y + dy[i];
 
-				if (newX >= 0 && newY >= 0 && newX < r && newY < c && visited[newX][newY] == 0
-						&& arr.indexOf(map[newX][newY]) == -1) {
+				if (newX >= 0 && newY >= 0 && newX < r && newY < c && visited[newX][newY] == 0 && arr.indexOf(map[newX][newY]) == -1) {
 					queue.offer(new Board(newX, newY));
 					arr.add(map[newX][newY]);
 					visited[newX][newY] = visited[board.x][board.y] + 1;
@@ -75,4 +75,3 @@ public class No6_보드이동 {
 	}
 
 }
-
